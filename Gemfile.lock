@@ -48,6 +48,7 @@ GEM
     autoprefixer-rails (5.1.7)
       execjs
       json
+    bcrypt (3.1.10)
     blacklight (5.9.3)
       bootstrap-sass (~> 3.2)
       deprecation
@@ -72,6 +73,16 @@ GEM
     daemons (1.1.9)
     deprecation (0.1.0)
       activesupport
+    devise (3.4.1)
+      bcrypt (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (>= 3.2.6, < 5)
+      responders
+      thread_safe (~> 0.1)
+      warden (~> 1.2.3)
+    devise-guests (0.3.3)
+      devise
+    diff-lcs (1.2.5)
     ebnf (0.3.6)
       haml (~> 4.0)
       rdf (~> 1.1)
@@ -180,6 +191,7 @@ GEM
       activesupport
       nokogiri (>= 1.4.2)
       solrizer (~> 3.3)
+    orm_adapter (0.5.0)
     rack (1.5.2)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -245,8 +257,27 @@ GEM
     rdoc (4.2.0)
       json (~> 1.4)
     ref (1.0.5)
+    responders (1.1.2)
+      railties (>= 3.2, < 4.2)
     rsolr (1.0.12)
       builder (>= 2.1.2)
+    rspec-core (3.2.1)
+      rspec-support (~> 3.2.0)
+    rspec-expectations (3.2.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.2.0)
+    rspec-mocks (3.2.1)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.2.0)
+    rspec-rails (3.2.1)
+      actionpack (>= 3.0, < 4.3)
+      activesupport (>= 3.0, < 4.3)
+      railties (>= 3.0, < 4.3)
+      rspec-core (~> 3.2.0)
+      rspec-expectations (~> 3.2.0)
+      rspec-mocks (~> 3.2.0)
+      rspec-support (~> 3.2.0)
+    rspec-support (3.2.2)
     rubyzip (1.1.7)
     sass (3.2.19)
     sass-rails (4.0.5)
@@ -301,6 +332,8 @@ GEM
     uglifier (2.7.1)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    warden (1.2.3)
+      rack (>= 1.0)
     xml-simple (1.1.5)
 
 PLATFORMS
@@ -308,10 +341,14 @@ PLATFORMS
 
 DEPENDENCIES
   coffee-rails (~> 4.0.0)
+  devise
+  devise-guests (~> 0.3)
   hydra (= 9.0.0)
   jbuilder (~> 2.0)
+  jettywrapper
   jquery-rails
   rails (= 4.1.9)
+  rspec-rails
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
   spring
