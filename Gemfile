@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+#added in class
+gem 'hydra', '9.0.0'
+
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.9'
