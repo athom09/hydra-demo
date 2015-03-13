@@ -11,7 +11,7 @@ class CatalogController < ApplicationController
   #before_filter :enforce_show_permissions, :only=>:show
   # This applies appropriate access controls to all solr queries
   #CatalogController.solr_search_params_logic += [:add_access_controls_to_solr_params]
-
+  CatalogController.solr_search_params_logic += [:show_my_stuff]
 
   configure_blacklight do |config|
     config.default_solr_params = {
@@ -63,8 +63,16 @@ class CatalogController < ApplicationController
     # solr fields to be displayed in the index (search results) view
     #   The ordering of the field names is the order of the display
     config.add_index_field solr_name('title', :stored_searchable, type: :string), :label => 'Title:'
+
+    #mike
+    config.add_index_field solr_name('desc_metadata__title', :stored_searchable, type: :string), :label => 'Title:'
+
     config.add_index_field solr_name('title_vern', :stored_searchable, type: :string), :label => 'Title:'
     config.add_index_field solr_name('author', :stored_searchable, type: :string), :label => 'Author:'
+
+    config.add_index_field solr_name('desc_metadata__author', :stored_searchable, type: :string), :label => 'Author:'
+
+
     config.add_index_field solr_name('author_vern', :stored_searchable, type: :string), :label => 'Author:'
     config.add_index_field solr_name('format', :symbol), :label => 'Format:'
     config.add_index_field solr_name('language', :stored_searchable, type: :string), :label => 'Language:'
@@ -157,6 +165,10 @@ class CatalogController < ApplicationController
     config.spell_max = 5
   end
 
+  def show_my_stuff(solr_parameters, user_parameters)
+    solr_parameters[:fq] ||= []
+    solr_parameters[:fq] << "has_model_ssim:(\"#{Book.to_class_uri}\" OR \"#{Manuscript.to_class_uri}\")"
+  end
 
 
 end

@@ -11,4 +11,8 @@ class Page < ActiveFedora::Base
 
   belongs_to :book, predicate: ActiveFedora::RDF::Fcrepo::RelsExt.isPartOf
 
+  contains "pageContent"
+  contains "pageImage"
+  contains "dontCrossTheStreamsStream"
+
 end
